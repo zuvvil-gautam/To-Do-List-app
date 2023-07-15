@@ -1,3 +1,5 @@
 module.exports.home = function(req,res){
-    res.end("<p>Hello World</p>");
+    res.render('home', {
+        title:'ToDo app',
+    });
 }
