@@ -59,4 +59,26 @@ function DateValeu(dueDate) {
     return newdate;
 }
 
+//function for creating todo list
+
+module.exports.createTodo = function(req,res){
+    dueDate = req.body.dateValue.split('-');  //splitting date and taking month value
+    let newdate ='';
+    newdate = DateValeu(dueDate);
+    
+
+    TodoLists.create(req.body)
+        .then(newArr =>{
+        desc: req.body.desc;
+         category:req.body.category;
+         dueDate: newdate;
+            
+            res.redirect('/');
+                
+            })
+        .catch(err =>{
+            console.log('error occurred');
+            return;
+        })
+}
 
