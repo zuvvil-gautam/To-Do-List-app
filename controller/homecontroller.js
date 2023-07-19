@@ -61,8 +61,6 @@ function DateValeu(dueDate) {
 
 //function for creating todo list
 
-//const TodoLists = require('./path/to/TodoLists'); // Replace with the correct path to your TodoLists module
-
 module.exports.createTodo = function (req, res) {
     dueDate = req.body.dateValue.split('-'); // splitting date and taking month value
     let newdate = '';
@@ -80,6 +78,29 @@ module.exports.createTodo = function (req, res) {
             console.log('Oops error occurred', err);
             // Handle the error if needed
         });
+};
+
+//function for deleting todo list
+
+module.exports.deleteTodo = async function (req, res) {
+    try {
+        sp = req.query.id; // getting the id from UI
+        newsp = sp.split(',');
+
+        // Create an array of promises to delete each item
+        const deletePromises = newsp.map(id => {
+            return TodoLists.findByIdAndDelete(id);
+        });
+
+        // Wait for all delete operations to complete
+        await Promise.all(deletePromises);
+
+        res.redirect('/');
+    } catch (err) {
+        console.log('Error occurred', err);
+        // Handle the error if needed
+        res.redirect('/');
+    }
 };
 
 
