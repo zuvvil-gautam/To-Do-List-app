@@ -61,24 +61,26 @@ function DateValeu(dueDate) {
 
 //function for creating todo list
 
-module.exports.createTodo = function(req,res){
-    dueDate = req.body.dateValue.split('-');  //splitting date and taking month value
-    let newdate ='';
-    newdate = DateValeu(dueDate);
-    
+//const TodoLists = require('./path/to/TodoLists'); // Replace with the correct path to your TodoLists module
 
-    TodoLists.create(req.body)
-        .then(newArr =>{
-        desc: req.body.desc;
-         category:req.body.category;
-         dueDate: newdate;
-            
-            res.redirect('/');
-                
-            })
-        .catch(err =>{
-            console.log('error occurred');
-            return;
+module.exports.createTodo = function (req, res) {
+    dueDate = req.body.dateValue.split('-'); // splitting date and taking month value
+    let newdate = '';
+    newdate = DateValeu(dueDate); // Assuming DateValue is a function defined elsewhere
+
+    TodoLists.create({
+        desc: req.body.desc,
+        category: req.body.category,
+        dueDate: newdate
+    })
+        .then(newArr => {
+            return res.redirect('/');
         })
-}
+        .catch(err => {
+            console.log('Oops error occurred', err);
+            // Handle the error if needed
+        });
+};
+
+
 
