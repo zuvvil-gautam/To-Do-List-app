@@ -2,6 +2,9 @@ body {
     margin: 0;
     font-family: sans-serif;
     background-color: rgb(34, 148, 220);
+    background-image: url(todo.jpg);
+    background-size: cover;
+    
 }
 
 /* css design  */
@@ -11,7 +14,7 @@ body {
 /* style for single task div container */
 
 .singleTask {
-    border: 1px solid white;
+    border: none;
     width: 50%;
     height: 90px;
     color: white;
